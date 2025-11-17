@@ -6,3 +6,8 @@
 body{
     background-color: #F8F9FF;
 }
+
+:root{
+    --azul: #3E5BDE;
+    --azul-escuro: #2240C8
+}
