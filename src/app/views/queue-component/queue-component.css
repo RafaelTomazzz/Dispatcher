@@ -1,0 +1,79 @@
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+#content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 170px;
+    box-sizing: border-box;
+}
+
+select{
+    width: 240px;
+    height: 45px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: lightgray;
+    border-width: 2px;
+    text-align: center;
+    color: var(--cinza-escuro);
+    font-size: 15px;
+    background-color: white;
+}
+
+select:focus{
+    outline: none;
+    transition: ease-in-out, 500ms;
+    border-color: gray;
+}
+
+#container-filtro{
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+#container-filtro input{
+    all: unset;
+    width: 40px;
+    height: 40px;
+    background-color: var(--azul);
+    border: none;
+    border-radius: 3px;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#container-filtro input:first-child::after{
+    content: "▲";
+}
+
+#container-filtro input:nth-last-child(2)::after{
+    content: "+";
+}
+
+#container-filtro input:last-child::after{
+    content: ">"
+}
+
+#container-filtro input:checked{
+    transition: ease-in-out 200ms;
+    background-color: transparent;
+}
+
+#container-filtro input:checked::after{
+    color: var(--azul);
+    transition: ease-in-out, 500ms;
+}
+
+

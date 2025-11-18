@@ -5,9 +5,11 @@
 
 body{
     background-color: #F8F9FF;
+    font-family: 'Poppins', sans-serif;
 }
 
 :root{
     --azul: #3E5BDE;
-    --azul-escuro: #2240C8
+    --azul-escuro: #2240C8;
+    --cinza-escuro: #555555;
 }
