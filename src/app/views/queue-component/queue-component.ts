@@ -12,7 +12,8 @@ import { UrgencyTypeEnum } from '../../enums/urgency-type-enum';
   styleUrl: './queue-component.css',
 })
 export class QueueComponent {
-  const tikcet1 : Ticket = {
+  
+  tikcet1 : Ticket = {
     id: 1,
     name: "Devolução de micro",
     requesttype_id: "SESAU",
