@@ -13,20 +13,31 @@
             <input type="checkbox" name="filtro[]" value="seta">
         </div>
         <div id="container-ticket">
-            <div class="ticket_button" 
-                *ngFor="let ticket of tickets"
-                (click)="ticketSelecionado = ticket.id"
-                [ngClass]="{'selected': ticketSelecionado === ticket.id}"
-                >
-                
-                <p>{{ticket.id}}</p>
-                <p>{{ticket.requesttype_id}}</p>
-                <p>{{ticket.urgency}}</p>
+            <ul class="team-list">
+            <li
+            class="team-item"
+            *ngFor="let ticket of tickets"
+            (click)="ticketSelecionado = ticket.id"
+            [ngClass]="{ 'selected': ticketSelecionado === ticket.id }"
+            >
+            <div class="col-code">{{ ticket.id }}</div>
+            <div class="col-name">{{ ticket.requesttype_id }}</div>
+            <div class="col-status">
+                {{ ticket.urgency === 1 ? '!' :
+                ticket.urgency === 2 ? '!' :
+                ticket.urgency === 3 ? '!!' :
+                ticket.urgency === 4 ? '!!' :
+                ticket.urgency === 5 ? '!!!' : ticket.urgency }}
             </div>
+            </li>
+
+        </ul>
         </div>
+
+
     </main>
 
-    <button class="poppins" (click)="ShowHiddenPopUp()">Dispatch</button>
+    <button (click)="ShowHiddenPopUp()">Dispatch</button>
     
 </div>
 
