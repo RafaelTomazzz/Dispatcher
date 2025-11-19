@@ -3,13 +3,16 @@
         <h1>{{ticket.id}}</h1>
         <h2>{{ticket.name}}</h2>
         <h2>{{ ticket.date_creation | date:"dd/MM/yyyy" }}</h2>
-        <h2>{{ticket.requesttype_id}}</h2>
+        <h2>{{ticket.locations_id}}</h2>
     </header>
     <main>
-        <button (click)="timerStart()">EM ATENDIMENTO</button>
-        <button (click)="timerStop()">PENDENTE</button>
+        <button (click)="timerStart()">
+        {{ showTimer ? tempoFormatado : 'START' }}
+        </button>
+
+        <button (click)="timerStop()">FINISH</button>
     </main>
-    <h2 #timer style="font-size: 30px;">{{tempoFormatado}}</h2>
+    <h2 class="address">Av. Fulano de Tal, 0</h2>
 </div>
 
-<button class="poppins" routerLink="/queue">Return</button>
+<button routerLink="/queue">Return</button>

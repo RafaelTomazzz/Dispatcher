@@ -22,20 +22,22 @@ export class TicketComponent implements OnInit {
 
   interval: any
   segundos = 0
-  tempoFormatado: string = "00:00"
+  tempoFormatado: string = "00:00:00"
+  showTimer: boolean = false;
 
   ngOnInit(): void {
 
   }
 
   timerStart() {
+    this.showTimer = true;
     this.interval = setInterval(() => {
       this.segundos++
       this.tempoFormatado = this.formatarTempo(this.segundos)
     }, 1000)
 
-    this.timer.nativeElement.href = this.tempoFormatado
-    console.log(this.tempoFormatado)
+    this.timer.nativeElement.innerHTML = "{{tempoFormatado}}"
+
   }
 
   private formatarTempo(seg: number): string {

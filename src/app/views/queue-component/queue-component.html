@@ -21,7 +21,7 @@
             [ngClass]="{ 'selected': ticketSelecionado === ticket.id }"
             >
             <div class="col-code">{{ ticket.id }}</div>
-            <div class="col-name">{{ ticket.requesttype_id }}</div>
+            <div class="col-name">{{ ticket.locations_id }}</div>
             <div class="col-status">
                 {{ ticket.urgency === 1 ? '!' :
                 ticket.urgency === 2 ? '!' :

@@ -32,7 +32,7 @@ export class QueueComponent implements OnInit {
   ticket1: Ticket = {
     id: 19824,
     name: "Devolução de micro",
-    requesttype_id: "DRH",
+    locations_id: "DRH",
     date_creation: new Date(2025, 10, 16),
     urgency: UrgencyTypeEnum.Alta
   }
@@ -40,7 +40,7 @@ export class QueueComponent implements OnInit {
   ticket2: Ticket = {
     id: 19990,
     name: "Micro não liga",
-    requesttype_id: "UPA Sul",
+    locations_id: "UPA Sul",
     date_creation: new Date(2025, 10, 19),
     urgency: UrgencyTypeEnum.Media
   }
@@ -48,7 +48,7 @@ export class QueueComponent implements OnInit {
   ticket3: Ticket = {
     id: 19700,
     name: "Ponto de rede não funciona",
-    requesttype_id: " SEDUC - Sede Indaiá",
+    locations_id: " SEDUC - Sede Indaiá",
     date_creation: new Date(2025, 10, 10),
     urgency: UrgencyTypeEnum.Baixa
   }
@@ -56,7 +56,7 @@ export class QueueComponent implements OnInit {
   ticket4: Ticket = {
     id: 19851,
     name: "A internet do prédio não funciona",
-    requesttype_id: "UBS Porto Novo",
+    locations_id: "UBS Porto Novo",
     date_creation: new Date(2025, 10, 19),
     urgency: UrgencyTypeEnum.MuitoAlta
   }
@@ -64,7 +64,7 @@ export class QueueComponent implements OnInit {
   ticket5: Ticket = {
     id: 19698,
     name: "Micro de laboratório com lentidão",
-    requesttype_id: "EMEF Maria Ujio",
+    locations_id: "EMEF Maria Ujio",
     date_creation: new Date(2025, 10, 10),
     urgency: UrgencyTypeEnum.MuitoBaixa
   }

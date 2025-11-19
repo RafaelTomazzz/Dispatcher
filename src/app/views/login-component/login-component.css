@@ -13,6 +13,7 @@ h1, h2, h3{
 }
 
 h1{
+    margin-right: 45px;
     font-family: 'Proxima Nova', sans-serif;
     font-weight: 900;
     font-size: 45px;
@@ -25,6 +26,7 @@ h2{
 }
 
 h3{
+    font-family: 'Proxima Nova', sans-serif;
     font-weight: 200;
     font-size: 15px;
     color: gray;
@@ -37,6 +39,8 @@ main{
 }
 
 input {
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: 200;
     width: 238px;
     height: 38px;
     background-color: white;
@@ -56,6 +60,9 @@ input:focus {
 }
 
 button {
+    margin-top: 15px;
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: 900;
     height: 38px;
     background-color: var(--azul);
     border: none;
