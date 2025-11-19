@@ -26,10 +26,10 @@
         </div>
     </main>
 
-    <button class=".poppins">Dispatch</button>
+    <button class="poppins" (click)="ShowHiddenPopUp()">Dispatch</button>
     
 </div>
 
-<div class="hiddenPopUp">
+<div class="hiddenPopUp" #popup>
     <app-pop-up-component></app-pop-up-component>
 </div>

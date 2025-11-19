@@ -1,0 +1,15 @@
+<div id="container">
+    <header>
+        <h1>{{ticket.id}}</h1>
+        <h2>{{ticket.name}}</h2>
+        <h2>{{ ticket.date_creation | date:"dd/MM/yyyy" }}</h2>
+        <h2>{{ticket.requesttype_id}}</h2>
+    </header>
+    <main>
+        <button (click)="timerStart()">EM ATENDIMENTO</button>
+        <button (click)="timerStop()">PENDENTE</button>
+    </main>
+    <h2 #timer style="font-size: 30px;">{{tempoFormatado}}</h2>
+</div>
+
+<button class="poppins" routerLink="/queue">Return</button>

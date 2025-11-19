@@ -14,13 +14,20 @@ import { PopUpComponent } from '../pop-up-component/pop-up-component';
   styleUrl: './queue-component.css',
 })
 
-export class QueueComponent implements OnInit{
+export class QueueComponent implements OnInit {
+
+  @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-      console.log(this.ticket1.id)
+
   }
 
-  constructor() {}
+  ngAfterViewInit(): void {
+    console.log(this.popup.nativeElement.style.display);
+  }
+
+
+  constructor() { }
 
   ticket1: Ticket = {
     id: 19824,
@@ -54,7 +61,7 @@ export class QueueComponent implements OnInit{
     urgency: UrgencyTypeEnum.MuitoAlta
   }
 
-    ticket5: Ticket = {
+  ticket5: Ticket = {
     id: 19698,
     name: "Micro de laboratória com lentidão",
     requesttype_id: "Emef Uijo",
@@ -64,6 +71,22 @@ export class QueueComponent implements OnInit{
 
   tickets: Ticket[] = [this.ticket1, this.ticket2, this.ticket3, this.ticket4, this.ticket5]
 
-  ticketSelecionado? : number
-  
+  ticketSelecionado!: number
+
+  ShowHiddenPopUp() {
+    try {
+      if(!this.ticketSelecionado){
+        throw new Error
+      }
+
+      this.popup.nativeElement.style.display = "flex"
+      const ticket = this.tickets.filter(t => t.id === this.ticketSelecionado)
+
+      localStorage.setItem('ticket', JSON.stringify(ticket))
+      console.log(localStorage.getItem('ticket'))
+    } catch (error) {
+      alert("Erro! Nenhum ticket selecionado")
+    }
+  }
+
 }
