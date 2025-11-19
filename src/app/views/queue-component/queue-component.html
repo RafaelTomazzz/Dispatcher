@@ -1,7 +1,7 @@
 <div id="content">
     <main>
         <section>
-            <select name="time" id="time" placeholder="choose a team">
+            <select name="time" id="time" placeholder="choose a team" class=".poppins">
                 <option value="" selected disabled hidden>choose a team</option>
                 <option value="externo">EXTERNO</option>
                 <option value="infra">INFRAESTRUTURA</option>
@@ -12,8 +12,21 @@
             <input type="checkbox" name="filtro[]" value="sinal">
             <input type="checkbox" name="filtro[]" value="seta">
         </div>
+        <div id="container-ticket">
+            <div class="ticket_button" 
+                *ngFor="let ticket of tickets"
+                (click)="ticketSelecionado = ticket.id"
+                [ngClass]="{'selected': ticketSelecionado === ticket.id}"
+                >
+                
+                <p>{{ticket.id}}</p>
+                <p>{{ticket.requesttype_id}}</p>
+                <p>{{ticket.urgency}}</p>
+            </div>
+        </div>
     </main>
 
-    <button></button>
+    <button class=".poppins">Dispatch</button>
+    
 </div>
 

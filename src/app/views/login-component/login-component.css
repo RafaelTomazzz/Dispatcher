@@ -30,7 +30,6 @@ h3{
 main{
     display: flex;
     flex-direction: column;
-
     gap: 20px;
 }
 
