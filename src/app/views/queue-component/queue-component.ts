@@ -4,11 +4,12 @@ import { ElementRef } from '@angular/core';
 import { Ticket } from '../../models/ticketModel';
 import { UrgencyTypeEnum } from '../../enums/urgency-type-enum';
 import { CommonModule } from '@angular/common';
+import { PopUpComponent } from '../pop-up-component/pop-up-component';
 
 @Component({
   standalone: true,
   selector: 'app-queue-component',
-  imports: [CommonModule],
+  imports: [CommonModule, PopUpComponent],
   templateUrl: './queue-component.html',
   styleUrl: './queue-component.css',
 })
