@@ -4,7 +4,7 @@ from app.routes import glpi_auth_route
 
 app = FastAPI(
     title="Dispatcher Backend",
-    description="Middleware API for Dispatcher.",
+    description="API for Dispatcher web application.",
     version="1.0.0"
 )
 
