@@ -47,3 +47,6 @@ Thumbs.db
 
 # GLPI Methods
 glpi_methods.py
+
+# Python cache folders
+"__pycache__/" 
