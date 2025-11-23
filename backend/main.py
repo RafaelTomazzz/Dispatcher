@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import glpi_auth_route, glpi_queue_route
+from app.routes import glpi_auth_route, glpi_queue_route, glpi_ticket_route
 
 app = FastAPI(
     title="Dispatcher Backend",
@@ -26,6 +26,7 @@ app.add_middleware(
 # --- Include Routers ---
 app.include_router(glpi_auth_route.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(glpi_queue_route.router, prefix="/api/queue", tags=["Queue"])
+app.include_router(glpi_ticket_route.router, prefix="/api/ticket", tags=["Ticket"])
 
 @app.get("/")
 def read_root():

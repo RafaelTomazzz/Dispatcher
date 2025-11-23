@@ -26,7 +26,7 @@ class QueueService(GLPIBaseService):
             range_param: Pagination range (default: '0-49').
         
         Returns:
-            Dict of search_results.
+            Dict of search_data.
         """
         
         ### Retrieving saved search itemtype and query parameters
@@ -98,7 +98,7 @@ class QueueService(GLPIBaseService):
             expand_dropdowns: Whether to expand dropdown fields (default: True).
         
         Returns:
-          List of dicts tickets_list. Each item in tickets_list is the full ticket dict from GLPI.
+          List of dicts tickets. Each item in tickets is the full ticket dict from GLPI.
         
         Notes:
             - Provide either search_data or ticket_ids, but not both (prioritizes ticket_ids if both given).
