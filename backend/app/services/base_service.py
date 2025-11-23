@@ -30,7 +30,8 @@ class GLPIBaseService:
     def _get_headers(self, session_token: str = None):
         headers = {
             'Content-Type': 'application/json',
-            'App-Token': self.app_token
+            'App-Token': self.app_token,
+            'X-GLPI-Sanitized-Content': 'false'
         }
         if session_token:
             headers['Session-Token'] = session_token
