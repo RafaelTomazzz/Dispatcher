@@ -52,4 +52,4 @@ glpi_methods.py
 __pycache__/
 
 # Angular cache folders
-frontend/.angular/cache
+frontend/.angular/cache/
