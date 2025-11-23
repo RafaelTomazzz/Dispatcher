@@ -20,7 +20,7 @@ select {
   border-color: lightgray;
   border-width: 2px;
   text-align: center;
-  color: var(--cinza-escuro);
+  color: var(--cinza);
   font-size: 15px;
   background-color: white;
 }
@@ -47,7 +47,7 @@ select:focus {
   border-radius: 3px;
   font-size: 30px;
   font-weight: 600;
-  color: var(--cinza-escuro);
+  color: var(--cinza);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@ select:focus {
 
 #container-filtro input:checked {
   transition: ease-in-out 200ms;
-  background-color: var(--cinza-escuro);
+  background-color: var(--cinza);
 }
 
 #container-filtro input:checked::after {

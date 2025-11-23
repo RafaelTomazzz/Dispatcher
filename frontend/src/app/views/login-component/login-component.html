@@ -3,13 +3,41 @@
         <h1>Dispatcher.</h1>
         <h2>For GLPI. By STII.</h2>
     </header>
+
     <main>
-        <input type="text" name="user" placeholder="user" maxlength="6">
-        <input type="password" name="password" placeholder="password">
-        <button>
-            <span class="bracket">&lt; /</span> DISPATCH <span class="bracket">&gt;</span>
-        </button>
+        <!-- Added (ngSubmit) to handle Enter key and Button click -->
+        <form (ngSubmit)="Submit()">
+            
+            <!-- Added [(ngModel)] binding -->
+            <input 
+                type="text" 
+                name="user" 
+                [(ngModel)]="username" 
+                placeholder="user" 
+                maxlength="6"
+                [disabled]="isLoading">
+
+            <input 
+                type="password" 
+                name="password" 
+                [(ngModel)]="password" 
+                placeholder="password"
+                [disabled]="isLoading">
+
+            @if (errorMessage) {
+                <p>{{ errorMessage }}</p>
+            }
+
+            <button type="submit" [disabled]="isLoading">
+                @if (isLoading) {
+                    <span class="bracket">&lt; / </span><span class="bracket">&gt;</span>
+                } @else {
+                    <span class="bracket">&lt; /</span> DISPATCH <span class="bracket">&gt;</span>
+                }
+            </button>
+        </form>
     </main>
+
     <footer>
         <h3>solved by</h3>
         <h3>LS & TD</h3>

@@ -49,7 +49,7 @@ Thumbs.db
 glpi_methods.py
 
 # Python cache folders
-"__pycache__/" 
+__pycache__/
 
 # Angular cache folders
-".angular/cache"
+frontend/.angular/cache

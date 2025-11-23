@@ -43,13 +43,28 @@ h3{
     color: var(--cinza-claro);
 }
 
-main{
+main {
     grid-row: 3;
     grid-column: 1 / -1;
     justify-self: center;
     display: flex;
     flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
     gap: 1vh;
+}
+
+p {
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #de493e;
+    align-self: center;
+    margin-bottom: 0px;
+    max-width: 270px;
 }
 
 input {

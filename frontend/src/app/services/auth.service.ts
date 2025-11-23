@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private apiUrl = 'http://localhost:8000/api/auth';
+  private apiUrl = 'http://192.168.1.70:8000/api/auth';
 
   login(credentials: any) {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
@@ -24,12 +24,12 @@ export class AuthService {
   }
 
   logout() {
-    // Add kill_session call
-    const token = localStorage.getItem('glpi_token');
+    this.http.post(`${this.apiUrl}/logout`, {}).subscribe({
+      next: () => console.log('Session killed on server'),
+      error: (err) => console.warn('Could not kill server session', err)
+    })
 
-    const kill_session = this.http.post<any>(`${this.apiUrl}/logout`, token)
-
-    // Don't wait for the result, just clear local state
+    // Clear local state immediately (don't wait for server response)
     localStorage.removeItem('glpi_token');
     localStorage.removeItem('glpi_user');
     this.router.navigate(['/login']);

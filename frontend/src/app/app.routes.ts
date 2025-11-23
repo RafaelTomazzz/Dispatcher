@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
+import { publicGuard } from './guards/public.guard';
 
 import { LoginComponent } from './views/login-component/login-component';
 import { QueueComponent } from './views/queue-component/queue-component';
@@ -13,7 +14,8 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./views/login-component/login-component').then(m => m.LoginComponent)
+        loadComponent: () => import('./views/login-component/login-component').then(m => m.LoginComponent),
+        canActivate: [publicGuard]
     },
     {
         path: "queue",
