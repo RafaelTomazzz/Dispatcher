@@ -27,7 +27,7 @@ async def get_subitem_data(ticket_id: int, subitem_type: str, session_token: str
 async def assign_to_ticket(AssignData: TechAssign, session_token: str = Depends(get_glpi_token)):
     """
     Endpoint to assign the user to a ticket.
-    Receives a GLPI ticket ID and login, talks to GLPI, checks for any previously assigned actors, and returns a bool of success.
+    Receives a GLPI ticket ID and login, talks to GLPI, checks for any previously assigned actors, and returns dict with success data.
     """
     ### Fetch current assigned users
     ticket_users = await TicketService().get_ticket_subitems(session_token, AssignData.ticket_id, "Ticket_User")
@@ -62,6 +62,45 @@ async def assign_to_ticket(AssignData: TechAssign, session_token: str = Depends(
     return {
         "message": "Technician assign successful",
         "user_assigned": assign_technician,
+        "status_updated": update_status,
+        "previously_assigned_technicians": previously_assigned_technicians,
+        "deleted_count": remove_assigned_technicians["deleted"],
+        "errors": remove_assigned_technicians["errors"]
+    }
+
+@router.post("/finishjob")
+async def finish_current_job(ticket_id, session_token: str = Depends(get_glpi_token)):
+    """
+    Endpoint to remove the user from the ticket's assigned.
+    Receives a GLPI ticket ID, talks to GLPI, removes all assigned users, and returns a dict with success data.
+    """
+    
+    ### Fetch current assigned users
+    ticket_users = await TicketService().get_ticket_subitems(session_token, ticket_id, "Ticket_User")
+    
+    previously_assigned_technicians = []
+    for actor in ticket_users:
+        if actor.get("type") == 2:
+            previously_assigned_technicians.append(actor.get("users_id"))
+    
+    ### Remove current assigned users        
+    remove_assigned_technicians = await TicketService().remove_existing_assigned_techs(session_token, ticket_id, ticket_users)
+    
+    if not remove_assigned_technicians:
+        raise HTTPException(status_code=401, detail="Assigned actors deletion failed")
+    
+    ### Update ticket status to Pendente
+    updated_ticket_data = {
+        'status': 4
+    }
+    
+    update_status = await TicketService().update_ticket(session_token, ticket_id, updated_ticket_data)
+    
+    if not update_status:
+        raise HTTPException(status_code=401, detail="Failed to update ticket status")
+    
+    return {
+        "message": "Ticket job stopped successfully",
         "status_updated": update_status,
         "previously_assigned_technicians": previously_assigned_technicians,
         "deleted_count": remove_assigned_technicians["deleted"],
