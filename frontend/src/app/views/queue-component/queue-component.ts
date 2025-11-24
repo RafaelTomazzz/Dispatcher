@@ -5,6 +5,7 @@ import { Ticket } from '../../models/ticketModel';
 import { UrgencyTypeEnum } from '../../enums/urgency-type-enum';
 import { CommonModule } from '@angular/common';
 import { PopUpComponent } from '../pop-up-component/pop-up-component';
+import { TicketService } from '../../services/ticket.service';
 
 @Component({
   standalone: true,
@@ -16,10 +17,14 @@ import { PopUpComponent } from '../pop-up-component/pop-up-component';
 
 export class QueueComponent implements OnInit {
 
+  tickets!: Ticket[]
+
   @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-
+    this.ticketService.getListQueue().subscribe(res => {
+      this.tickets = res
+    })
   }
 
   ngAfterViewInit(): void {
@@ -27,8 +32,9 @@ export class QueueComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(private ticketService : TicketService) { }
 
+/*  
   ticket1: Ticket = {
     id: 19824,
     name: "Devolução de micro",
@@ -70,6 +76,7 @@ export class QueueComponent implements OnInit {
   }
 
   tickets: Ticket[] = [this.ticket1, this.ticket2, this.ticket3, this.ticket4, this.ticket5]
+*/
 
   ticketSelecionado!: number
 
