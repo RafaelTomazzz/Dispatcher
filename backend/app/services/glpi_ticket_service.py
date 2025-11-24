@@ -1,6 +1,6 @@
 import httpx
 from fastapi import HTTPException
-from typing import List, Dict, Any
+from typing import List, Dict, Tuple, Any
 from .base_service import GLPIBaseService
 
 class TicketService(GLPIBaseService):

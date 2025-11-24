@@ -1,5 +1,6 @@
 import os
 import httpx
+from urllib.parse import quote
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -13,19 +14,22 @@ class GLPIBaseService:
         proxy_user = os.getenv("DEFAULT_PROXY_USER")
         proxy_pass = os.getenv("DEFAULT_PROXY_PASS")
         
-        self.proxies = None
+        self.proxies: dict | None = None
 
-        if proxy_host and proxy_host != "None":
-            if proxy_user and proxy_pass:
-                proxy_url = f"http://{proxy_user}:{proxy_pass}@{proxy_host}"
+        proxy_host = os.getenv("DEFAULT_PROXY_HOST")
+        proxy_user = os.getenv("DEFAULT_PROXY_USER")
+        proxy_pass = os.getenv("DEFAULT_PROXY_PASS")
+
+        def is_set(v: str | None) -> bool:
+            return bool(v) and v.strip() and v.strip().lower() != "none"
+
+        if is_set(proxy_host):
+            if is_set(proxy_user) and is_set(proxy_pass):
+                proxy_url = f"http://{quote(proxy_user)}:{quote(proxy_pass)}@{proxy_host}"
+                self.proxies = proxy_url
             else:
                 proxy_url = f"http://{proxy_host}"
-            
-            # 3. Store it for httpx
-            self.proxies = {
-                "http://": proxy_url,
-                "https://": proxy_url
-            }
+                self.proxies = proxy_url            
         
     def _get_headers(self, session_token: str = None):
         headers = {
@@ -36,6 +40,6 @@ class GLPIBaseService:
         if session_token:
             headers['Session-Token'] = session_token
         return headers
-
+    
     async def get_async_client(self):
         return httpx.AsyncClient(proxy=self.proxies)
