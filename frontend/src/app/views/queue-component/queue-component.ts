@@ -22,67 +22,71 @@ export class QueueComponent implements OnInit {
   @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-    this.ticketService.getListQueue().subscribe(res => {
-      this.tickets = res
-    })
+
   }
 
   ngAfterViewInit(): void {
-    console.log(this.popup.nativeElement.style.display);
+    this.ticketService.getListQueue().subscribe(res => {
+      this.tickets = res
+
+      console.log(res)
+    })
+
+    console.log(this.tickets)
   }
 
 
-  constructor(private ticketService : TicketService) { }
+  constructor(private ticketService: TicketService) { }
 
-/*  
-  ticket1: Ticket = {
-    id: 19824,
-    name: "Devolução de micro",
-    locations_id: "DRH",
-    date_creation: new Date(2025, 10, 16),
-    urgency: UrgencyTypeEnum.Alta
-  }
-
-  ticket2: Ticket = {
-    id: 19990,
-    name: "Micro não liga",
-    locations_id: "UPA Sul",
-    date_creation: new Date(2025, 10, 19),
-    urgency: UrgencyTypeEnum.Media
-  }
-
-  ticket3: Ticket = {
-    id: 19700,
-    name: "Ponto de rede não funciona",
-    locations_id: " SEDUC - Sede Indaiá",
-    date_creation: new Date(2025, 10, 10),
-    urgency: UrgencyTypeEnum.Baixa
-  }
-
-  ticket4: Ticket = {
-    id: 19851,
-    name: "A internet do prédio não funciona",
-    locations_id: "UBS Porto Novo",
-    date_creation: new Date(2025, 10, 19),
-    urgency: UrgencyTypeEnum.MuitoAlta
-  }
-
-  ticket5: Ticket = {
-    id: 19698,
-    name: "Micro de laboratório com lentidão",
-    locations_id: "EMEF Maria Ujio",
-    date_creation: new Date(2025, 10, 10),
-    urgency: UrgencyTypeEnum.MuitoBaixa
-  }
-
-  tickets: Ticket[] = [this.ticket1, this.ticket2, this.ticket3, this.ticket4, this.ticket5]
-*/
+  /*  
+    ticket1: Ticket = {
+      id: 19824,
+      name: "Devolução de micro",
+      locations_id: "DRH",
+      date_creation: new Date(2025, 10, 16),
+      urgency: UrgencyTypeEnum.Alta
+    }
+  
+    ticket2: Ticket = {
+      id: 19990,
+      name: "Micro não liga",
+      locations_id: "UPA Sul",
+      date_creation: new Date(2025, 10, 19),
+      urgency: UrgencyTypeEnum.Media
+    }
+  
+    ticket3: Ticket = {
+      id: 19700,
+      name: "Ponto de rede não funciona",
+      locations_id: " SEDUC - Sede Indaiá",
+      date_creation: new Date(2025, 10, 10),
+      urgency: UrgencyTypeEnum.Baixa
+    }
+  
+    ticket4: Ticket = {
+      id: 19851,
+      name: "A internet do prédio não funciona",
+      locations_id: "UBS Porto Novo",
+      date_creation: new Date(2025, 10, 19),
+      urgency: UrgencyTypeEnum.MuitoAlta
+    }
+  
+    ticket5: Ticket = {
+      id: 19698,
+      name: "Micro de laboratório com lentidão",
+      locations_id: "EMEF Maria Ujio",
+      date_creation: new Date(2025, 10, 10),
+      urgency: UrgencyTypeEnum.MuitoBaixa
+    }
+  
+    tickets: Ticket[] = [this.ticket1, this.ticket2, this.ticket3, this.ticket4, this.ticket5]
+  */
 
   ticketSelecionado!: number
 
   ShowHiddenPopUp() {
     try {
-      if(!this.ticketSelecionado){
+      if (!this.ticketSelecionado) {
         throw new Error
       }
 

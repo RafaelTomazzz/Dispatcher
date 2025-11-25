@@ -3,15 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Ticket } from '../models/ticketModel';
+import { tap } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
   private http = inject(HttpClient)
-  private apiUrl = "http://192.168.11.235:8000/api/queue"
+  private apiUrl = "http://localhost:8000/api/queue"
 
   getListQueue(): Observable<Ticket[]>{
-    return this.http.get<Ticket[]>(`${this.apiUrl}/fetchqueue?saved_search_id=164`)
+    return this.http.get<any>(`${this.apiUrl}/fetchqueue?saved_search_id=164`).pipe(
+      map((ticketResponse) => {
+        return ticketResponse.queue_tickets.map((ticket:any) => ({
+            id: ticket.id,
+            entities_id: ticket.entities_id,
+            name: ticket.name,
+            urgency: ticket.urgency,
+            locations_id: ticket.locations_id,
+            date_creation: ticket.date_creation
+          
+        })) as Ticket[]
+      })
+    )
+    
   }
 }
