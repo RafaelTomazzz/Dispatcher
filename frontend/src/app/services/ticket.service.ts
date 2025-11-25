@@ -9,18 +9,14 @@ import { map } from 'rxjs';
 })
 export class TicketService {
   private http = inject(HttpClient)
-  private apiUrl = "http://localhost:8000/api/queue"
+  private apiUrl = "http://localhost:8000/api/"
 
   getListQueue(): Observable<Ticket[]>{
-    return this.http.get<any>(`${this.apiUrl}/fetchqueue?saved_search_id=164`).pipe(
-      // map((ticketResponse) => {
-      //   ticketResponse.queue_tickets.map()
-      // })
-      
+    return this.http.get<any>(`${this.apiUrl}queue/fetchqueue?saved_search_id=164`).pipe(
       map((ticketResponse) => {
         return ticketResponse.queue_tickets.map((ticket:any) => ({
             id: ticket.id,
-            entities_id: ticket.entities_id.split("PMC > ", 2).slice(1),
+            entities_id: ticket.entities_id.split("PMC > ").slice(1),
             name: ticket.name,
             urgency: ticket.urgency,
             locations_id: ticket.locations_id,
@@ -28,7 +24,14 @@ export class TicketService {
           
         })) as Ticket[]
       })
-    )
-    
+    )    
+  }
+  
+  postTicketAssingSelf(ticket_id: number): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}ticket/assignself`, {
+      user_id: localStorage.getItem('glpi_user'),
+      ticket_id: ticket_id
+    })
   }
 }
+

@@ -8,6 +8,7 @@ import { ElementRef } from '@angular/core';
 
 
 @Component({
+  standalone: true,
   selector: 'app-ticket-component',
   imports: [RouterLink, CommonModule, DatePipe],
   templateUrl: './ticket-component.html',
