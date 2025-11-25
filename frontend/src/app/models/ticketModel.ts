@@ -8,6 +8,3 @@ export interface Ticket{
     locations_id: string
     date_creation: Date,
 }
-
-
-
