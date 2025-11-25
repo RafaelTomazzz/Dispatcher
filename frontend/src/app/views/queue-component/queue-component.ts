@@ -5,6 +5,7 @@ import { Ticket } from '../../models/ticketModel';
 import { CommonModule } from '@angular/common';
 import { TicketService } from '../../services/ticket.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -22,21 +23,15 @@ export class QueueComponent implements OnInit {
   @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
-    this.ticketService.getListQueue().subscribe(res => {
-      this.tickets = res
-
-      console.log(res)
-    })
-
+    this.tickets = this.activeRoute.snapshot.data['tickets']
     console.log(this.tickets)
   }
 
+  ngAfterViewInit(): void {
+  }
 
-  constructor(private ticketService: TicketService) { }
+
+  constructor(private ticketService: TicketService, private activeRoute: ActivatedRoute) { }
 
   ticketSelecionado!: number
 
