@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { TicketService } from '../../services/ticket.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { tick } from '@angular/core/testing';
 
 @Component({
   standalone: true,
@@ -54,9 +55,13 @@ export class QueueComponent implements OnInit {
     }
   }
 
-  onChange(event: any){
-    console.log(event.target.value)
-    switch(event.target.value){
+  lastTeam : string = ''
+
+  teamChange(event: any){
+    const currentTeam = !event.target.value ? this.lastTeam : event.target.value
+    this.lastTeam = currentTeam
+
+    switch(currentTeam){
       case "infra":
         this.tickets = this.activeRoute.snapshot.data["ticketsInfra"]
         break
@@ -65,6 +70,22 @@ export class QueueComponent implements OnInit {
         break
       default:
         this.tickets = this.activeRoute.snapshot.data["tickets"]
+    }
+  }
+
+  dataBoolean: boolean = false
+
+  dataFilter($event: any){
+    switch(this.dataBoolean){
+      case false:
+        this.dataBoolean = true
+        this.tickets.sort((ticketA, ticketB) => 
+          new Date(ticketA.date_creation).getTime() - new Date(ticketB.date_creation).getTime()
+        )
+        break
+      case true:
+        this.dataBoolean = false
+        this.teamChange($event)
     }
   }
 }

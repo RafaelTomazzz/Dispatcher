@@ -1,14 +1,14 @@
 <div id="content">
     <main>
         <section>
-            <select (change)="onChange($event)">
+            <select (change)="teamChange($event)">
                 <option selected disabled hidden>choose a team</option>
                 <option value="externo">EXTERNO</option>
                 <option value="infra">INFRAESTRUTURA</option>
             </select>
         </section>
         <div id="container-filtro">
-            <input type="checkbox" name="filtro[]" value="triangulo">
+            <input type="checkbox" name="filtro[]" value="triangulo" (change)="dataFilter($event)">
             <input type="checkbox" name="filtro[]" value="sinal">
             <input type="checkbox" name="filtro[]" value="seta">
         </div>
