@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ticketsListResolveResolver implements Resolve<Ticket[]> {
+export class ticketsListResolver implements Resolve<Ticket[]> {
   constructor(private ticketService: TicketService){}
 
   resolve(): Observable<Ticket[]>  {

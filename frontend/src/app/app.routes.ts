@@ -5,7 +5,7 @@ import { publicGuard } from './guards/public.guard';
 import { LoginComponent } from './views/login-component/login-component';
 import { QueueComponent } from './views/queue-component/queue-component';
 import { TicketComponent } from './views/ticket-component/ticket-component';
-import { ticketsListResolveResolver } from './resolvers/tickets-list-resolve-resolver';
+import { ticketsListResolver } from './resolvers/tickets-list-resolve-resolver';
 
 export const routes: Routes = [
     {
@@ -22,7 +22,7 @@ export const routes: Routes = [
         path: "queue",
         loadComponent: () => import('./views/queue-component/queue-component').then(m => m.QueueComponent),
         resolve: {
-            tickets: ticketsListResolveResolver
+            tickets: ticketsListResolver
         },
         canActivate: [authGuard]
     },

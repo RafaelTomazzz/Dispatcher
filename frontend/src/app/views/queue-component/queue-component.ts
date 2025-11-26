@@ -23,8 +23,11 @@ export class QueueComponent implements OnInit {
   @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-    this.tickets = this.activeRoute.snapshot.data['tickets']
-    console.log(this.tickets)
+    if(!localStorage.getItem('tickets') || this.activeRoute.snapshot.data['tickets'] != JSON.parse(localStorage.getItem('tickets') || '[]')){
+      localStorage.setItem('tickets', JSON.stringify(this.activeRoute.snapshot.data['tickets']))
+    }
+    
+    this.tickets = JSON.parse(localStorage.getItem('tickets') || '[]')
   }
 
   ngAfterViewInit(): void {
