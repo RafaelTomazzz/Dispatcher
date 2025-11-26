@@ -11,8 +11,8 @@ export class TicketService {
   private http = inject(HttpClient)
   private apiUrl = "http://localhost:8000/api/"
 
-  getListQueue(): Observable<Ticket[]>{
-    return this.http.get<any>(`${this.apiUrl}queue/fetchqueue?saved_search_id=164`).pipe(
+  getListQueue(id:number): Observable<Ticket[]>{
+    return this.http.get<any>(`${this.apiUrl}queue/fetchqueue?saved_search_id=${id}`).pipe(
       map((ticketResponse) => {
         return ticketResponse.queue_tickets.map((ticket:any) => ({
             id: ticket.id,

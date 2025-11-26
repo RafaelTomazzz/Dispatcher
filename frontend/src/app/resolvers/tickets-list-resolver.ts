@@ -8,10 +8,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ticketsListResolver implements Resolve<Ticket[]> {
+
+export class ticketsListInfraExterno implements Resolve<Ticket[]> {
   constructor(private ticketService: TicketService){}
 
   resolve(): Observable<Ticket[]>  {
-    return this.ticketService.getListQueue()
+    return this.ticketService.getListQueue(167)
   }
 };

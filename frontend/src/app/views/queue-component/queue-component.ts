@@ -53,4 +53,18 @@ export class QueueComponent implements OnInit {
       alert("Erro! Nenhum ticket selecionado")
     }
   }
+
+  onChange(event: any){
+    console.log(event.target.value)
+    switch(event.target.value){
+      case "infra":
+        this.tickets = this.activeRoute.snapshot.data["ticketsInfra"]
+        break
+      case "externo":
+        this.tickets = this.activeRoute.snapshot.data["ticketsExterno"]
+        break
+      default:
+        this.tickets = this.activeRoute.snapshot.data["tickets"]
+    }
+  }
 }

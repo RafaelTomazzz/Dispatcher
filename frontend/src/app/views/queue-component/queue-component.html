@@ -1,10 +1,10 @@
 <div id="content">
     <main>
         <section>
-            <select name="team" id="team">
-                <option value="" selected disabled hidden>choose a team</option>
-                <option value="164">EXTERNO</option>
-                <option value="165">INFRAESTRUTURA</option>
+            <select (change)="onChange($event)">
+                <option selected disabled hidden>choose a team</option>
+                <option value="externo">EXTERNO</option>
+                <option value="infra">INFRAESTRUTURA</option>
             </select>
         </section>
         <div id="container-filtro">
