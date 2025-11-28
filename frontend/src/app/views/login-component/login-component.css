@@ -7,7 +7,7 @@
        Row 4: Footer Zone (94.48% -> 100%) -> Rest
     */
     grid-template-rows: 19.48% 30.54% 42.46% 1fr;
-    grid-template-columns: 11.75% auto;
+    grid-template-columns: calc(50% - 150px) auto;
     height: 100vh;
 }
 

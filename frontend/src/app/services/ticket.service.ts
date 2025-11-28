@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 })
 export class TicketService {
   private http = inject(HttpClient)
-  private apiUrl = "http://localhost:8000/api/"
+  private apiUrl = "http://192.168.11.231:8000/api/"
 
   getListQueue(id:number): Observable<Ticket[]>{
     
