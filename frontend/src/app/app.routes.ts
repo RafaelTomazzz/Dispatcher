@@ -5,6 +5,9 @@ import { publicGuard } from './guards/public.guard';
 import { LoginComponent } from './views/login-component/login-component';
 import { QueueComponent } from './views/queue-component/queue-component';
 import { TicketComponent } from './views/ticket-component/ticket-component';
+import { ticketsListInfraExterno } from './resolvers/tickets-list-resolver';
+import { ticketListinfra } from './resolvers/ticket-list-infra-resolver';
+import { ticketsListExterno } from './resolvers/ticket-list-externo-resolver';
 
 export const routes: Routes = [
     {
@@ -20,6 +23,9 @@ export const routes: Routes = [
     {
         path: "queue",
         loadComponent: () => import('./views/queue-component/queue-component').then(m => m.QueueComponent),
+        resolve: {
+            tickets: ticketsListInfraExterno
+        },
         canActivate: [authGuard]
     },
     {

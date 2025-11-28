@@ -1,9 +1,9 @@
 <div id="container">
     <header>
-        <h1>{{ticket.id}}</h1>
-        <h2>{{ticket.name}}</h2>
+        <h1>{{ ticket.id }}</h1>
         <h2>{{ ticket.date_creation | date:"dd/MM/yyyy" }}</h2>
-        <h2>{{ticket.locations_id}}</h2>
+        <h2>{{ ticket.entities_id }}</h2>
+        <h2>{{ ticket.locations_id }}</h2>
     </header>
     <main>
         <button (click)="timerStart()">
@@ -12,7 +12,7 @@
 
         <button (click)="timerStop()">FINISH</button>
     </main>
-    <h2 class="address">Av. Fulano de Tal, 0</h2>
+    <h2 class="address">ticket address</h2>
 </div>
 
 <button routerLink="/queue">Return</button>

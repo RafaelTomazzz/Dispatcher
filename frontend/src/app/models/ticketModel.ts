@@ -2,11 +2,9 @@ import { UrgencyTypeEnum } from "../enums/urgency-type-enum"
 
 export interface Ticket{
     id: number,
+    entities_id: string,
     name: string,
-    locations_id: string,
+    urgency: UrgencyTypeEnum,
+    locations_id: string
     date_creation: Date,
-    urgency: UrgencyTypeEnum
 }
-
-
-

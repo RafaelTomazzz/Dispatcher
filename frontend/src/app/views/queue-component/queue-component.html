@@ -1,14 +1,14 @@
 <div id="content">
     <main>
         <section>
-            <select name="time" id="time" placeholder="choose a team" class=".poppins">
-                <option value="" selected disabled hidden>choose a team</option>
+            <select (change)="teamChange($event)">
+                <option selected disabled hidden>choose a team</option>
                 <option value="externo">EXTERNO</option>
                 <option value="infra">INFRAESTRUTURA</option>
             </select>
         </section>
         <div id="container-filtro">
-            <input type="checkbox" name="filtro[]" value="triangulo">
+            <input type="checkbox" name="filtro[]" value="triangulo" (change)="dataFilter($event)">
             <input type="checkbox" name="filtro[]" value="sinal">
             <input type="checkbox" name="filtro[]" value="seta">
         </div>
@@ -21,7 +21,7 @@
             [ngClass]="{ 'selected': ticketSelecionado === ticket.id }"
             >
             <div class="col-code">{{ ticket.id }}</div>
-            <div class="col-name">{{ ticket.locations_id }}</div>
+            <div class="col-name">{{ ticket.entities_id }}</div>
             <div class="col-status">
                 {{ ticket.urgency === 1 ? '!' :
                 ticket.urgency === 2 ? '!' :
@@ -38,9 +38,4 @@
     </main>
 
     <button (click)="ShowHiddenPopUp()">Dispatch</button>
-    
-</div>
-
-<div class="hiddenPopUp" #popup>
-    <app-pop-up-component></app-pop-up-component>
 </div>

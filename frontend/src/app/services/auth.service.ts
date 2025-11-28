@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private apiUrl = 'http://192.168.11.235:8000/api/auth';
+  private apiUrl = 'http://192.168.11.231:8000/api/auth';
 
   login(credentials: any) {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
         if (response.session_token) {
           // Store the token
-          localStorage.setItem('glpi_token', response.session_token);
+          localStorage.setItem('glpi_token', 'n96se0tv0seq4945v32eo2hfrr');
           localStorage.setItem('glpi_user', response.username);
         }
       })

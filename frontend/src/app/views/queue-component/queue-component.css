@@ -55,6 +55,11 @@ select:focus {
 
 #container-filtro input:first-child::after {
   content: "▲";
+  /* width: 20px;
+  height: 20px;
+  background-image: url('/assets/svgs/date_icon.svg');
+  background-position: center ;
+  background-size: cover; */
 }
 
 #container-filtro input:nth-last-child(2)::after {
@@ -154,8 +159,8 @@ button {
   font-weight: 900;
   font-size: 40px;
   color: #1D1D1B;
-  position: absolute;
-  bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
