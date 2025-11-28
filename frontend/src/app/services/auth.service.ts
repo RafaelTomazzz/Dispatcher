@@ -15,8 +15,8 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
         if (response.session_token) {
-          // Store the token
-          localStorage.setItem('glpi_token', 'n96se0tv0seq4945v32eo2hfrr');
+          // Store the token / Token Dispatcher!!!
+          localStorage.setItem('glpi_token', 'tsan9oem829i3tj7pmt5s8h1mt');
           localStorage.setItem('glpi_user', response.username);
         }
       })
