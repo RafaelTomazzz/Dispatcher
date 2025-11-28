@@ -54,12 +54,12 @@ select:focus {
 }
 
 #container-filtro input:first-child::after {
-  content: "";
-  width: 20px;
+  content: "▲";
+  /* width: 20px;
   height: 20px;
   background-image: url('/assets/svgs/date_icon.svg');
   background-position: center ;
-  background-size: cover;
+  background-size: cover; */
 }
 
 #container-filtro input:nth-last-child(2)::after {

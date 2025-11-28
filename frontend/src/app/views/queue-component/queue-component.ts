@@ -19,16 +19,20 @@ import { tick } from '@angular/core/testing';
 export class QueueComponent implements OnInit {
 
   tickets!: Ticket[]
+  ticketsInfra!: Ticket[]
+  ticketsExterno!: Ticket[]
   private router = inject(Router)
 
   @ViewChild('popup') popup!: ElementRef
 
   ngOnInit(): void {
-    if(!localStorage.getItem('tickets') || this.activeRoute.snapshot.data['tickets'] != JSON.parse(localStorage.getItem('tickets') || '[]')){
-      localStorage.setItem('tickets', JSON.stringify(this.activeRoute.snapshot.data['tickets']))
-    }
-    
-    this.tickets = JSON.parse(localStorage.getItem('tickets') || '[]')
+    this.tickets = this.activeRoute.snapshot.data['tickets']
+    this.ticketService.getListQueue(169).subscribe(res => {
+      this.ticketsInfra = res
+    })
+    this.ticketService.getListQueue(164).subscribe(res => {
+      this.ticketsExterno = res
+    })
   }
 
   ngAfterViewInit(): void {
@@ -50,9 +54,11 @@ export class QueueComponent implements OnInit {
       localStorage.setItem('ticket', JSON.stringify(ticket))
       console.log(localStorage.getItem('ticket'))
       this.router.navigate(['/ticket']);
+      console.log(this.ticketSelecionado)
     } catch (error) {
       alert("Erro! Nenhum ticket selecionado")
     }
+
   }
 
   lastTeam : string = ''
@@ -63,10 +69,10 @@ export class QueueComponent implements OnInit {
 
     switch(currentTeam){
       case "infra":
-        this.tickets = this.activeRoute.snapshot.data["ticketsInfra"]
+        this.tickets = this.ticketsInfra
         break
       case "externo":
-        this.tickets = this.activeRoute.snapshot.data["ticketsExterno"]
+        this.tickets = this.ticketsExterno
         break
       default:
         this.tickets = this.activeRoute.snapshot.data["tickets"]

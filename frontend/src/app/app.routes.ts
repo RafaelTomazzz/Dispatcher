@@ -24,9 +24,9 @@ export const routes: Routes = [
         path: "queue",
         loadComponent: () => import('./views/queue-component/queue-component').then(m => m.QueueComponent),
         resolve: {
-            tickets: ticketsListInfraExterno,
-            ticketsInfra: ticketListinfra,
-            ticketsExterno: ticketsListExterno
+            tickets: ticketsListInfraExterno
+            // ticketsInfra: ticketListinfra,
+            // ticketsExterno: ticketsListExterno
         },
         canActivate: [authGuard]
     },

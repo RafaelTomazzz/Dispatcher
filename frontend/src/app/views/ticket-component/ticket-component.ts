@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { TicketService } from '../../services/ticket.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class TicketComponent implements OnInit {
   tickets: Ticket[] = JSON.parse(localStorage.getItem('ticket') || "[]")
   ticket: Ticket = this.tickets[0]
 
+  constructor(private ticketService : TicketService) {}
+
   @ViewChild("timer") timer! : ElementRef
 
   interval: any
@@ -31,14 +34,15 @@ export class TicketComponent implements OnInit {
   }
 
   timerStart() {
-    this.showTimer = true;
-    this.interval = setInterval(() => {
-      this.segundos++
-      this.tempoFormatado = this.formatarTempo(this.segundos)
-    }, 1000)
-
-    this.timer.nativeElement.innerHTML = "{{tempoFormatado}}"
-
+    const response = this.ticketService.postTicketAssingSelf(this.ticket.id)
+    response.subscribe(res => {
+      console.log(res)
+    })
+    // this.showTimer = true
+    // this.interval = setInterval(() => {
+    //   this.segundos++
+    //   this.tempoFormatado = this.formatarTempo(this.segundos)
+    // }, 1000)
   }
 
   private formatarTempo(seg: number): string {

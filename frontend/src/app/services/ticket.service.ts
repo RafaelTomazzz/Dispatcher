@@ -27,10 +27,10 @@ export class TicketService {
     )    
   }
   
-  postTicketAssingSelf(ticket_id: number): Observable<any>{
+  postTicketAssingSelf(id: number) :Observable<any>{
     return this.http.post<any>(`${this.apiUrl}ticket/assignself`, {
-      user_id: localStorage.getItem('glpi_user'),
-      ticket_id: ticket_id
+      user_id: "5138",
+      ticket_id: id 
     })
   }
 }
