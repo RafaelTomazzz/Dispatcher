@@ -63,16 +63,18 @@ export class QueueComponent implements OnInit {
 
   lastTeam : string = ''
 
-  teamChange(event: any){
+  async teamChange(event: any){
     const currentTeam = !event.target.value ? this.lastTeam : event.target.value
     this.lastTeam = currentTeam
 
     switch(currentTeam){
       case "infra":
-        this.tickets = this.ticketsInfra
+        await this.ticketService.getListQueue(169).subscribe(res =>{
+          this.tickets = res})
         break
       case "externo":
-        this.tickets = this.ticketsExterno
+        await this.ticketService.getListQueue(164).subscribe(res =>{
+          this.tickets = res})
         break
       default:
         this.tickets = this.activeRoute.snapshot.data["tickets"]

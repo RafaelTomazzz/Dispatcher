@@ -12,6 +12,7 @@ export class TicketService {
   private apiUrl = "http://localhost:8000/api/"
 
   getListQueue(id:number): Observable<Ticket[]>{
+    
     return this.http.get<any>(`${this.apiUrl}queue/fetchqueue?saved_search_id=${id}`).pipe(
       map((ticketResponse) => {
         return ticketResponse.queue_tickets.map((ticket:any) => ({
@@ -24,7 +25,7 @@ export class TicketService {
           
         })) as Ticket[]
       })
-    )    
+    )
   }
   
   postTicketAssingSelf(id: number) :Observable<any>{
@@ -33,5 +34,8 @@ export class TicketService {
       ticket_id: id 
     })
   }
-}
 
+  changeStatusPendente(id:number): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}ticket/finishjob?ticket_id=${id}`, {ticket_id: id})
+  }
+}

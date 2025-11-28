@@ -38,11 +38,12 @@ export class TicketComponent implements OnInit {
     response.subscribe(res => {
       console.log(res)
     })
-    // this.showTimer = true
-    // this.interval = setInterval(() => {
-    //   this.segundos++
-    //   this.tempoFormatado = this.formatarTempo(this.segundos)
-    // }, 1000)
+
+    this.showTimer = true
+    this.interval = setInterval(() => {
+      this.segundos++
+      this.tempoFormatado = this.formatarTempo(this.segundos)
+    }, 1000)
   }
 
   private formatarTempo(seg: number): string {
@@ -59,5 +60,10 @@ export class TicketComponent implements OnInit {
 
   timerStop() {
     clearInterval(this.interval)
+    const response = this.ticketService.changeStatusPendente(this.ticket.id)
+    response.subscribe(res =>
+      console.log(res.body)
+    )    
+    
   }
 }
